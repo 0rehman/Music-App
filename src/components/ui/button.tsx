@@ -10,13 +10,14 @@ const buttonVariants = cva(
       variant: {
         primary: "text-black bg-white",
         secondary: "bg-black text-white",
+        icon: "bg-none outline-none border-none w-auto max-w-auto h-auto p-0 m-0",
       },
       size: {
         default: "px-4 py-1",
         sm: "px-4 py-1",
         md: "px-5 py-1",
         lg: "px-6 py-1",
-        icon: "h-9 w-9",
+        icon: "p-0 m-0",
       },
     },
     defaultVariants: {

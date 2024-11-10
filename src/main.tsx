@@ -4,9 +4,11 @@ import { RouterProvider } from "react-router-dom";
 import Router from "@/navigation/Router";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import SongPlayer from "./components/song-player/SongPlayer";
 
 createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
     <RouterProvider router={Router} />
+    {/* <SongPlayer /> */}
   </Provider>
 );

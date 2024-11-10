@@ -9,7 +9,7 @@ import { Button } from "../ui/button";
 
 const Sidebar = () => {
   return (
-    <div className="sidebar min-h-full max-w-[400px] w-full flex flex-col">
+    <aside className="sidebar min-h-full max-w-[400px] w-full md:flex flex-col hidden">
       <div className="sidebar-top px-6 bg-primary min-h-[100px] py-3 rounded-md overflow-hidden mb-3">
         <ul>
           <li className="mb-5">
@@ -90,7 +90,7 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

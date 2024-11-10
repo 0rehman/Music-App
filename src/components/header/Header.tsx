@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 
 const Header = () => {
   return (
-    <header className="header mb-4">
+    <header className="header">
       <div className="flex items-center justify-between lg:mb-8 mb-4">
         <div className="flex items-center justify-start gap-3">
           <div className="button_wrap">
@@ -36,7 +36,7 @@ const Header = () => {
           </div>
 
           <div className="button_wrap">
-            <Button className="bg-purple-800 text-black text-[16px] leading-[1] inline-flex items-center justify-center h-8 w-8 overflow-hidden rounded-full">
+            <Button className="bg-purple-500 text-black text-[16px] leading-[1] inline-flex items-center justify-center h-8 w-8 overflow-hidden rounded-full">
               D
             </Button>
           </div>
