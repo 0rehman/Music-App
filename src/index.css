@@ -9,6 +9,55 @@
   font-family: "Outfit", serif;
 }
 
+html,
+body {
+  background-color: #000;
+}
+
+/* Custom Scrollbar Styles for Dark Themed Website */
+body {
+  /* Ensure body can scroll */
+  overflow: auto;
+}
+
+/* Style for Webkit Browsers (Chrome, Safari) */
+body::-webkit-scrollbar {
+  width: 10px; /* Width of the vertical scrollbar */
+  height: 10px; /* Height of the horizontal scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #555; /* Darker color for the thumb */
+  border-radius: 10px; /* Rounded edges */
+  border: 3px solid #333; /* Border around the thumb */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #888; /* Lighter shade when hovered */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #222; /* Dark background for the track */
+  border-radius: 10px;
+}
+
+/* Style for Firefox */
+html {
+  scrollbar-width: thin; /* Makes the scrollbar thinner */
+  scrollbar-color: #555 #222; /* Thumb and track colors */
+}
+
+/* Style for Internet Explorer 10+ */
+body {
+  -ms-overflow-style: scrollbar; /* Show scrollbar for IE */
+}
+
+*:focus {
+  opacity: 0.4;
+  outline: none;
+  border: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -71,4 +120,69 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.opacity-effect {
+  transition: all 100ms ease;
+}
+
+.opacity-effect:is(:hover, :active, :focus) {
+  opacity: 0.5;
+}
+
+section:not(section[id]) {
+  padding-block: 40px;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+div:has(> .song-card) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Song player range input */
+.song-progress-bar {
+  width: 70%;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    green var(--progress, 50%),
+    white var(--progress, 50%)
+  );
+  border-radius: 4px;
+  appearance: none;
+  outline: none;
+  margin-inline: auto;
+  display: block;
+  margin-top: 20px;
+}
+
+.song-progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  height: 0; /* Hides the thumb */
+}
+
+.song-progress-bar::-moz-range-thumb {
+  width: 0;
+  height: 0; /* Hides the thumb */
+}
+
+.song-progress-bar::-ms-thumb {
+  width: 0;
+  height: 0; /* Hides the thumb */
+}
+
+.song-progress-bar:active {
+  --progress: calc(100% * (var(--value) / 100));
 }
