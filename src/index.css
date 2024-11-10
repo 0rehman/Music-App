@@ -9,6 +9,11 @@
   font-family: "Outfit", serif;
 }
 
+html,
+body {
+  background-color: #000;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -71,4 +76,16 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.opacity-effect {
+  transition: all 100ms ease;
+}
+
+.opacity-effect:is(:hover, :active, :focus) {
+  opacity: 0.5;
+}
+
+section:not(section[id]) {
+  padding-block: 50px;
 }
