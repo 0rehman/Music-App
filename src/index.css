@@ -186,3 +186,11 @@ div:has(> .song-card) {
 .song-progress-bar:active {
   --progress: calc(100% * (var(--value) / 100));
 }
+
+.search-bar:is(:hover, :active, :focus) #closeSearchBarButton {
+  opacity: 1;
+}
+
+.play-button:is(:hover, :active, :focus) button {
+  opacity: 1 !important;
+}

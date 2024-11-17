@@ -15,11 +15,11 @@ const Router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: ROUTES.album,
+        path: ROUTES.album + "/:albumId?",
         element: <Album />,
       },
       {
-        path: ROUTES.search,
+        path: ROUTES.search + "/:searchQuery?",
         element: <Search />,
       },
     ],

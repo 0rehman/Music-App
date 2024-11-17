@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 
 interface headingProps {
-  headingText: string;
+  headingText: string | undefined;
   className?: string;
   sizes: "sm" | "md" | "lg" | null;
   id?: string | number;

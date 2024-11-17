@@ -6,8 +6,12 @@ import stackIcon from "@/assets/images/stack.png";
 import rightArrowIcon from "@/assets/images/arrow.png";
 import plusIcon from "@/assets/images/plus.png";
 import { Button } from "../ui/button";
+import { useDispatch } from "react-redux";
+import { setShowSearchBar } from "@/store/features/ui/uiSlice";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
   return (
     <aside className="sidebar min-h-full max-w-[400px] w-full md:flex flex-col hidden">
       <div className="sidebar-top px-6 bg-primary min-h-[100px] py-3 rounded-md overflow-hidden mb-3">
@@ -22,13 +26,13 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to={ROUTES.base}
+            <button
+              onClick={() => dispatch(setShowSearchBar())}
               className="text-white lg:text-[16px] md:text-[15px] text-[14px] font-bold inline-flex items-center justify-start gap-3 capitalize hover:opacity-50 transition-all duration-100 w-full"
             >
               <img className="h-5 w-5" src={searchIcon} alt="Reload Page" />
               Search
-            </NavLink>
+            </button>
           </li>
         </ul>
       </div>

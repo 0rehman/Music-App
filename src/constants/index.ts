@@ -3,6 +3,7 @@ import imgTwo from "@/assets/images/img2.jpg";
 import imgThree from "@/assets/images/img3.jpg";
 import imgFour from "@/assets/images/img4.jpg";
 import imgFive from "@/assets/images/img5.jpg";
+import ClockImg from "@/assets/images/clock_icon.png";
 
 export const slideListOne = [
   {
@@ -60,4 +61,11 @@ export const settings = {
       },
     },
   ],
+};
+
+export const headsData = {
+  songName: "Song Name",
+  artistName: "Artist Name",
+  datePublished: "Publish Date",
+  clockIcon: ClockImg,
 };
