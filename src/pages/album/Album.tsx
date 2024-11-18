@@ -2,11 +2,19 @@ import AlbumInfo from "@/components/album/album-info/AlbumInfo";
 import CustomTable from "@/components/custom-table/CustomTable";
 import { Skeleton } from "@/components/ui/skeleton";
 import { headsData } from "@/constants";
+import {
+  selectSongPlaying,
+  setSongMeta,
+  setSongPlaying,
+  setSongToPlay,
+} from "@/store/features/song-player/songPlayerSlice";
 import { useGetSingleAlbumTracksQuery } from "@/store/services/album/getAlbumApi";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const Album = () => {
   const { albumId } = useParams();
+  const dispatch = useDispatch();
 
   const { isLoading: allTrackLoading, data: allTrackData } =
     useGetSingleAlbumTracksQuery(
@@ -18,10 +26,38 @@ const Album = () => {
       }
     );
 
+  const { songId } = useSelector(selectSongPlaying);
+
+  const handleSongPlay = (
+    songSrc: string,
+    songId: string,
+    metaObj: {
+      name: string;
+      artistName: string;
+      image: string;
+    }
+  ) => {
+    dispatch(setSongPlaying(songId));
+    dispatch(setSongToPlay(songSrc));
+    dispatch(setSongMeta(metaObj));
+  };
+
   function renderTableRows(value: any) {
     if (!value && !value?.length) return;
     const tableContent = value?.map((item: any, index: number) => (
-      <tr className="border-b border-solid border-[#dadada46]" key={index}>
+      <tr
+        className={`border-b border-solid border-[#dadada46] cursor-pointer ${
+          songId === item?.id ? "bg-secondary bg-opacity-55" : ""
+        }`}
+        key={index}
+        onClick={() =>
+          handleSongPlay(item?.preview_url, item?.id, {
+            name: item?.name,
+            artistName: item?.artists?.[0]?.name,
+            image: item?.album?.images?.[0]?.url,
+          })
+        }
+      >
         <td className="text-white lg:text-[15px] md:text-[14px] text-[12px] py-4">
           {index + 1}
         </td>

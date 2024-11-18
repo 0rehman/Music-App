@@ -6,18 +6,20 @@ import { combineReducers } from "redux";
 import authSlice from "./features/auth/authSlice";
 import albumSlice from "./features/album/albumSlice";
 import uiSlice from "./features/ui/uiSlice";
+import songPlayerSlice from "./features/song-player/songPlayerSlice";
 
 const rootReducer = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
   authSliceReducer: authSlice.reducer,
   albumSliceReducer: albumSlice.reducer,
   uiSliceReducer: uiSlice.reducer,
+  songPlayerSliceReducer: songPlayerSlice.reducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: [apiSlice.reducerPath],
+  blacklist: [apiSlice.reducerPath, "songPlayerSlice"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -155,7 +155,7 @@ div:has(> .song-card) {
   height: 4px;
   background: linear-gradient(
     to right,
-    green var(--progress, 50%),
+    green var(--progress, 10%),
     white var(--progress, 50%)
   );
   border-radius: 4px;
@@ -193,4 +193,27 @@ div:has(> .song-card) {
 
 .play-button:is(:hover, :active, :focus) button {
   opacity: 1 !important;
+}
+
+.song-progress-bar {
+  width: 70%;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    green var(--progress, 0%),
+    white var(--progress, 0%)
+  ) !important;
+  border-radius: 4px;
+  appearance: none;
+  outline: none;
+  margin-top: 10px;
+}
+
+.song-progress-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
 }

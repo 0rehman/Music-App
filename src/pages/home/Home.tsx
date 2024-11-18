@@ -3,6 +3,7 @@ import SongCardList from "@/components/song-card-list/SongCardList";
 import Heading from "@/components/typegraphy/Heading";
 import { fetchToken } from "@/constants/apiConstants";
 import { selectToken, setToken } from "@/store/features/auth/authSlice";
+import { setSongList } from "@/store/features/song-player/songPlayerSlice";
 import { useGetAllAlbumsQuery } from "@/store/services/album/getAlbumApi";
 import { useGetAllTracksQuery } from "@/store/services/tracks/getTrackApi";
 import { useEffect } from "react";
@@ -41,7 +42,9 @@ const Home = () => {
     if (!token) {
       setTokenInStore();
     }
-  }, []);
+
+    dispatch(setSongList(albumData?.albums));
+  }, [albumData]);
 
   return (
     <main id="home">

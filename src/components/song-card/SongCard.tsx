@@ -1,8 +1,19 @@
 import mainImg from "@/assets/images/img1.jpg";
 import { Button } from "../ui/button";
 import playIcon from "@/assets/images/play.png";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectSongMeta,
+  selectSongPlaying,
+  setShowSongPlayer,
+  setSongMeta,
+  setSongPlaying,
+  setSongToPlay,
+} from "@/store/features/song-player/songPlayerSlice";
+import pauseIcon from "@/assets/images/pause.png";
 
 interface SongCardProps {
+  id?: string | undefined;
   name?: string;
   artists?: {
     id: string;
@@ -15,9 +26,27 @@ interface SongCardProps {
       width: number;
     }[];
   };
+  preview_url?: string | undefined;
 }
 
 const SongCard = ({ item }: { item?: SongCardProps }) => {
+  const dispatch = useDispatch();
+
+  const { songPlaying, songId } = useSelector(selectSongPlaying);
+
+  const handlePlaySong = () => {
+    dispatch(setShowSongPlayer());
+    dispatch(setSongPlaying(item?.id));
+    dispatch(setSongToPlay(item?.preview_url));
+    dispatch(
+      setSongMeta({
+        name: item?.name,
+        artistName: item?.artists?.[0]?.name,
+        image: item?.album?.images?.[0]?.url,
+      })
+    );
+  };
+
   return (
     <article className="song-card max-w-[330px] w-full cursor-pointer relative group">
       <figure className="img_wrap lg:mb-4 md:mb-3 h-[220px] w-full overflow-hidden">
@@ -37,12 +66,17 @@ const SongCard = ({ item }: { item?: SongCardProps }) => {
         </p>
       </div>
 
-      <div className="button_wrap play-button group-hover:block hidden absolute top-[40%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+      <div className="button_wrap play-button group-hover:flex items-center justify-center hidden absolute inset-0 translate-y-[-25px]">
         <Button
-          className="h-[60px] w-[60px] bg-gray-600 bg-opacity-30 backdrop-blur-lg rounded-full !hover:opacity-1"
+          className="h-[60px] w-[60px] bg-gray-600 bg-opacity-30 backdrop-blur-lg border-none outline-none rounded-full !hover:opacity-1 focus-ring-0"
           variant={"icon"}
+          onClick={handlePlaySong}
         >
-          <img src={playIcon} alt="Reload Page" />
+          {!songPlaying || songId !== item?.id ? (
+            <img src={playIcon} alt="Reload Page" />
+          ) : (
+            <img src={pauseIcon} alt="Reload Page" />
+          )}
         </Button>
       </div>
     </article>
